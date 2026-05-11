@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Unit\Services\TrendingServiceTest" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" tests="9" assertions="0" errors="9" failures="0" skipped="0" time="0.000000">
+    <testcase name="testCalculateTrendingScoreWithHighViews" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="46" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testCalculateTrendingScoreWithHighViews&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testCalculateTrendingScoreWithHighReviews" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="72" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testCalculateTrendingScoreWithHighReviews&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testCalculateTrendingScoreWithHighScamReports" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="98" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testCalculateTrendingScoreWithHighScamReports&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testCalculateTrendingScoreCombined" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="124" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testCalculateTrendingScoreCombined&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testCalculateTrendingScoreWithNoActivity" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="158" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testCalculateTrendingScoreWithNoActivity&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testGetTrendingAppsReturnsTopApps" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="175" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testGetTrendingAppsReturnsTopApps&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testGetTrendingAppsCachesResults" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="212" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testGetTrendingAppsCachesResults&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testTrackViewIncrementsActivityLog" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="237" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testTrackViewIncrementsActivityLog&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+    <testcase name="testUpdateDailyTrendingUpdatesAllApps" file="D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php" line="275" class="Tests\Unit\Services\TrendingServiceTest" classname="Tests.Unit.Services.TrendingServiceTest" assertions="0" time="0.000000">
+      <error type="CodeIgniter\Exceptions\CriticalError">Tests\Unit\Services\TrendingServiceTest::testUpdateDailyTrendingUpdatesAllApps&#13;
+CodeIgniter\Exceptions\CriticalError: The required PHP extension "sqlite3" is not loaded. Install and enable it to use "SQLite3" driver.
+&#13;
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:186
+D:\workspace\d8-2\htdocs\app-review\system\Database\Database.php:59
+D:\workspace\d8-2\htdocs\app-review\system\Database\Config.php:82
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:90
+D:\workspace\d8-2\htdocs\app-review\system\Test\DatabaseTestTrait.php:67
+D:\workspace\d8-2\htdocs\app-review\system\Test\CIUnitTestCase.php:254
+D:\workspace\d8-2\htdocs\app-review\tests\unit\Services\TrendingServiceTest.php:30</error>
+    </testcase>
+  </testsuite>
+</testsuites>

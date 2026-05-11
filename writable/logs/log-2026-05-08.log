@@ -1,0 +1,375 @@
+ERROR - 2026-05-08 06:08:42 --> Duplicate key name 'email'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('CREATE TABLE `users` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password_hash` VARCHAR(255) NOT NULL,
+	`role` ENUM(\'user\',\'admin\') NOT NULL DEFAULT \'user\',
+	`status` ENUM(\'active\',\'suspended\',\'deleted\') NOT NULL DEFAULT \'active\',
+	`email_verified` BOOLEAN NOT NULL DEFAULT 0,
+	`verification_token` VARCHAR(100) NULL,
+	`reset_token` VARCHAR(100) NULL,
+	`reset_token_expires` DATETIME NULL,
+	`failed_login_count` INT NOT NULL DEFAULT 0,
+	`last_failed_login` DATETIME NULL,
+	`account_locked_until` DATETIME NULL,
+	`last_login` DATETIME NULL,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_users` PRIMARY KEY(`id`),
+	UNIQUE KEY `username` (`username`),
+	UNIQUE KEY `email` (`email`),
+	KEY `email` (`email`),
+	KEY `username` (`username`),
+	KEY `status` (`status`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `users` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password_hash` VARCHAR(255) NOT NULL,
+	`role` ENUM(\'user\',\'admin\') NOT NULL DEFAULT \'user\',
+	`status` ENUM(\'active\',\'suspended\',\'deleted\') NOT NULL DEFAULT \'active\',
+	`email_verified` BOOLEAN NOT NULL DEFAULT 0,
+	`verification_token` VARCHAR(100) NULL,
+	`reset_token` VARCHAR(100) NULL,
+	`reset_token_expires` DATETIME NULL,
+	`failed_login_count` INT NOT NULL DEFAULT 0,
+	`last_failed_login` DATETIME NULL,
+	`account_locked_until` DATETIME NULL,
+	`last_login` DATETIME NULL,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_users` PRIMARY KEY(`id`),
+	UNIQUE KEY `username` (`username`),
+	UNIQUE KEY `email` (`email`),
+	KEY `email` (`email`),
+	KEY `username` (`username`),
+	KEY `status` (`status`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `users` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password_hash` VARCHAR(255) NOT NULL,
+	`role` ENUM(\'user\',\'admin\') NOT NULL DEFAULT \'user\',
+	`status` ENUM(\'active\',\'suspended\',\'deleted\') NOT NULL DEFAULT \'active\',
+	`email_verified` BOOLEAN NOT NULL DEFAULT 0,
+	`verification_token` VARCHAR(100) NULL,
+	`reset_token` VARCHAR(100) NULL,
+	`reset_token_expires` DATETIME NULL,
+	`failed_login_count` INT NOT NULL DEFAULT 0,
+	`last_failed_login` DATETIME NULL,
+	`account_locked_until` DATETIME NULL,
+	`last_login` DATETIME NULL,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_users` PRIMARY KEY(`id`),
+	UNIQUE KEY `username` (`username`),
+	UNIQUE KEY `email` (`email`),
+	KEY `email` (`email`),
+	KEY `username` (`username`),
+	KEY `status` (`status`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 4 SYSTEMPATH\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `users` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password_hash` VARCHAR(255) NOT NULL,
+	`role` ENUM(\'user\',\'admin\') NOT NULL DEFAULT \'user\',
+	`status` ENUM(\'active\',\'suspended\',\'deleted\') NOT NULL DEFAULT \'active\',
+	`email_verified` BOOLEAN NOT NULL DEFAULT 0,
+	`verification_token` VARCHAR(100) NULL,
+	`reset_token` VARCHAR(100) NULL,
+	`reset_token_expires` DATETIME NULL,
+	`failed_login_count` INT NOT NULL DEFAULT 0,
+	`last_failed_login` DATETIME NULL,
+	`account_locked_until` DATETIME NULL,
+	`last_login` DATETIME NULL,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_users` PRIMARY KEY(`id`),
+	UNIQUE KEY `username` (`username`),
+	UNIQUE KEY `email` (`email`),
+	KEY `email` (`email`),
+	KEY `username` (`username`),
+	KEY `status` (`status`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 5 APPPATH\Database\Migrations\2025-01-01-000001_CreateUsersTable.php(104): CodeIgniter\Database\Forge->createTable('users', true, [...])
+ 6 SYSTEMPATH\Database\MigrationRunner.php(1014): App\Database\Migrations\CreateUsersTable->up()
+ 7 SYSTEMPATH\Database\MigrationRunner.php(202): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+ 8 SYSTEMPATH\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(null)
+ 9 SYSTEMPATH\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+10 SYSTEMPATH\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run([])
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', [])
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2026-05-08 06:08:59 --> Duplicate key name 'slug'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('CREATE TABLE `categories` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(100) NOT NULL,
+	`slug` VARCHAR(100) NOT NULL,
+	`description` TEXT NULL,
+	`icon` VARCHAR(100) NULL,
+	`display_order` INT NOT NULL DEFAULT 0,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_categories` PRIMARY KEY(`id`),
+	UNIQUE KEY `name` (`name`),
+	UNIQUE KEY `slug` (`slug`),
+	KEY `slug` (`slug`),
+	KEY `display_order` (`display_order`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `categories` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(100) NOT NULL,
+	`slug` VARCHAR(100) NOT NULL,
+	`description` TEXT NULL,
+	`icon` VARCHAR(100) NULL,
+	`display_order` INT NOT NULL DEFAULT 0,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_categories` PRIMARY KEY(`id`),
+	UNIQUE KEY `name` (`name`),
+	UNIQUE KEY `slug` (`slug`),
+	KEY `slug` (`slug`),
+	KEY `display_order` (`display_order`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `categories` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(100) NOT NULL,
+	`slug` VARCHAR(100) NOT NULL,
+	`description` TEXT NULL,
+	`icon` VARCHAR(100) NULL,
+	`display_order` INT NOT NULL DEFAULT 0,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_categories` PRIMARY KEY(`id`),
+	UNIQUE KEY `name` (`name`),
+	UNIQUE KEY `slug` (`slug`),
+	KEY `slug` (`slug`),
+	KEY `display_order` (`display_order`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 4 SYSTEMPATH\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `categories` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(100) NOT NULL,
+	`slug` VARCHAR(100) NOT NULL,
+	`description` TEXT NULL,
+	`icon` VARCHAR(100) NULL,
+	`display_order` INT NOT NULL DEFAULT 0,
+	`created_at` DATETIME NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_categories` PRIMARY KEY(`id`),
+	UNIQUE KEY `name` (`name`),
+	UNIQUE KEY `slug` (`slug`),
+	KEY `slug` (`slug`),
+	KEY `display_order` (`display_order`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 5 APPPATH\Database\Migrations\2025-01-01-000002_CreateCategoriesTable.php(64): CodeIgniter\Database\Forge->createTable('categories', true, [...])
+ 6 SYSTEMPATH\Database\MigrationRunner.php(1014): App\Database\Migrations\CreateCategoriesTable->up()
+ 7 SYSTEMPATH\Database\MigrationRunner.php(202): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+ 8 SYSTEMPATH\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(null)
+ 9 SYSTEMPATH\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+10 SYSTEMPATH\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run([])
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', [])
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-05-08 06:09:54 --> TypeError: CodeIgniter\CLI\InputOutput::input(): Return value must be of type string, bool returned
+[Method: CLI, Route: db:table]
+in SYSTEMPATH\CLI\InputOutput.php on line 46.
+ 1 SYSTEMPATH\CLI\CLI.php(260): CodeIgniter\CLI\InputOutput->input()
+ 2 SYSTEMPATH\CLI\CLI.php(298): CodeIgniter\CLI\CLI::prompt('
+Which table do you want to see?', [...], [...])
+ 3 SYSTEMPATH\Commands\Database\ShowTableInfo.php(145): CodeIgniter\CLI\CLI::promptByKey([], [...], 'required')
+ 4 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\ShowTableInfo->run([])
+ 5 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:table', [])
+ 6 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 7 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 8 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2026-05-08 06:20:10 --> Duplicate key name 'setting_key'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('CREATE TABLE `settings` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`setting_key` VARCHAR(100) NOT NULL,
+	`setting_value` TEXT NULL,
+	`setting_type` ENUM(\'string\',\'integer\',\'float\',\'boolean\',\'json\') NOT NULL DEFAULT \'string\',
+	`description` TEXT NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_settings` PRIMARY KEY(`id`),
+	UNIQUE KEY `setting_key` (`setting_key`),
+	KEY `setting_key` (`setting_key`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `settings` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`setting_key` VARCHAR(100) NOT NULL,
+	`setting_value` TEXT NULL,
+	`setting_type` ENUM(\'string\',\'integer\',\'float\',\'boolean\',\'json\') NOT NULL DEFAULT \'string\',
+	`description` TEXT NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_settings` PRIMARY KEY(`id`),
+	UNIQUE KEY `setting_key` (`setting_key`),
+	KEY `setting_key` (`setting_key`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `settings` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`setting_key` VARCHAR(100) NOT NULL,
+	`setting_value` TEXT NULL,
+	`setting_type` ENUM(\'string\',\'integer\',\'float\',\'boolean\',\'json\') NOT NULL DEFAULT \'string\',
+	`description` TEXT NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_settings` PRIMARY KEY(`id`),
+	UNIQUE KEY `setting_key` (`setting_key`),
+	KEY `setting_key` (`setting_key`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 4 SYSTEMPATH\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `settings` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`setting_key` VARCHAR(100) NOT NULL,
+	`setting_value` TEXT NULL,
+	`setting_type` ENUM(\'string\',\'integer\',\'float\',\'boolean\',\'json\') NOT NULL DEFAULT \'string\',
+	`description` TEXT NULL,
+	`updated_at` DATETIME NULL,
+	CONSTRAINT `pk_settings` PRIMARY KEY(`id`),
+	UNIQUE KEY `setting_key` (`setting_key`),
+	KEY `setting_key` (`setting_key`)
+) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci')
+ 5 APPPATH\Database\Migrations\2025-01-01-000011_CreateSettingsTable.php(53): CodeIgniter\Database\Forge->createTable('settings', true, [...])
+ 6 SYSTEMPATH\Database\MigrationRunner.php(1014): App\Database\Migrations\CreateSettingsTable->up()
+ 7 SYSTEMPATH\Database\MigrationRunner.php(202): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+ 8 SYSTEMPATH\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(null)
+ 9 SYSTEMPATH\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+10 SYSTEMPATH\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+11 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run([])
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', [])
+13 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+WARNING - 2026-05-08 06:56:35 --> [DEPRECATED] Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead in VENDORPATH\symfony\deprecation-contracts\function.php on line 25.
+ 1 VENDORPATH\symfony\deprecation-contracts\function.php(25): trigger_error('Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead', 16384)
+ 2 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(55): trigger_deprecation('fakerphp/faker', '1.20', 'Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead')
+ 3 [internal function]: Faker\Provider\Image::imageUrl(800, 600, 'business')
+ 4 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(708): call_user_func_array([...], [...])
+ 5 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(973): Faker\Generator->format('imageUrl', [...])
+ 6 APPPATH\Database\Factories\BlogPostFactory.php(27): Faker\Generator->__call('imageUrl', [...])
+ 7 ROOTPATH\tests\database\Factories\FactoryDataTest.php(140): App\Database\Factories\BlogPostFactory->make([...])
+ 8 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Database\Factories\FactoryDataTest->testBlogPostFactoryGeneratesRequiredFields()
+ 9 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+10 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+11 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Database\Factories\FactoryDataTest))
+12 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+13 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+14 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+15 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+16 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 06:56:35 --> [DEPRECATED] Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead in VENDORPATH\symfony\deprecation-contracts\function.php on line 25.
+ 1 VENDORPATH\symfony\deprecation-contracts\function.php(25): trigger_error('Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead', 16384)
+ 2 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(173): trigger_deprecation('fakerphp/faker', '1.20', 'Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead')
+ 3 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(62): Faker\Provider\Image::getFormats()
+ 4 [internal function]: Faker\Provider\Image::imageUrl(800, 600, 'business')
+ 5 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(708): call_user_func_array([...], [...])
+ 6 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(973): Faker\Generator->format('imageUrl', [...])
+ 7 APPPATH\Database\Factories\BlogPostFactory.php(27): Faker\Generator->__call('imageUrl', [...])
+ 8 ROOTPATH\tests\database\Factories\FactoryDataTest.php(140): App\Database\Factories\BlogPostFactory->make([...])
+ 9 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Database\Factories\FactoryDataTest->testBlogPostFactoryGeneratesRequiredFields()
+10 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+11 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+12 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Database\Factories\FactoryDataTest))
+13 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+14 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+15 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+16 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+17 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 06:56:35 --> [DEPRECATED] Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead in VENDORPATH\symfony\deprecation-contracts\function.php on line 25.
+ 1 VENDORPATH\symfony\deprecation-contracts\function.php(25): trigger_error('Since fakerphp/faker 1.20: Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead', 16384)
+ 2 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(184): trigger_deprecation('fakerphp/faker', '1.20', 'Provider is deprecated and will no longer be available in Faker 2. Please use a custom provider instead')
+ 3 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(179): Faker\Provider\Image::getFormatConstants()
+ 4 VENDORPATH\fakerphp\faker\src\Faker\Provider\Image.php(62): Faker\Provider\Image::getFormats()
+ 5 [internal function]: Faker\Provider\Image::imageUrl(800, 600, 'business')
+ 6 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(708): call_user_func_array([...], [...])
+ 7 VENDORPATH\fakerphp\faker\src\Faker\Generator.php(973): Faker\Generator->format('imageUrl', [...])
+ 8 APPPATH\Database\Factories\BlogPostFactory.php(27): Faker\Generator->__call('imageUrl', [...])
+ 9 ROOTPATH\tests\database\Factories\FactoryDataTest.php(140): App\Database\Factories\BlogPostFactory->make([...])
+10 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Database\Factories\FactoryDataTest->testBlogPostFactoryGeneratesRequiredFields()
+11 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+12 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+13 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Database\Factories\FactoryDataTest))
+14 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+15 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+16 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+17 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+18 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 09:22:24 --> [DEPRECATED] Creation of dynamic property CodeIgniter\HTTP\IncomingRequest::$rateLimit is deprecated in APPPATH\Filters\RateLimitFilter.php on line 129.
+ 1 APPPATH\Filters\RateLimitFilter.php(58): App\Filters\RateLimitFilter->addRateLimitHeaders(Object(CodeIgniter\HTTP\IncomingRequest), 1, 60, 1778232204)
+ 2 ROOTPATH\tests\unit\Filters\RateLimitFilterTest.php(44): App\Filters\RateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Unit\Filters\RateLimitFilterTest->testRateLimitFilterAllowsFirstRequest()
+ 4 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+ 5 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+ 6 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Unit\Filters\RateLimitFilterTest))
+ 7 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+ 8 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+ 9 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+10 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+11 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+12 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 09:22:41 --> [DEPRECATED] Creation of dynamic property CodeIgniter\HTTP\IncomingRequest::$rateLimit is deprecated in APPPATH\Filters\RateLimitFilter.php on line 129.
+ 1 APPPATH\Filters\RateLimitFilter.php(58): App\Filters\RateLimitFilter->addRateLimitHeaders(Object(CodeIgniter\HTTP\IncomingRequest), 1, 60, 1778232221)
+ 2 ROOTPATH\tests\unit\Filters\RateLimitFilterTest.php(44): App\Filters\RateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Unit\Filters\RateLimitFilterTest->testRateLimitFilterAllowsFirstRequest()
+ 4 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+ 5 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+ 6 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Unit\Filters\RateLimitFilterTest))
+ 7 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+ 8 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+ 9 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+10 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+11 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+12 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 09:23:57 --> [DEPRECATED] Creation of dynamic property CodeIgniter\HTTP\IncomingRequest::$rateLimit is deprecated in APPPATH\Filters\RateLimitFilter.php on line 129.
+ 1 APPPATH\Filters\RateLimitFilter.php(58): App\Filters\RateLimitFilter->addRateLimitHeaders(Object(CodeIgniter\HTTP\IncomingRequest), 1, 60, 1778232297)
+ 2 ROOTPATH\tests\unit\Filters\RateLimitFilterTest.php(44): App\Filters\RateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Unit\Filters\RateLimitFilterTest->testRateLimitFilterAllowsFirstRequest()
+ 4 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+ 5 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+ 6 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Unit\Filters\RateLimitFilterTest))
+ 7 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+ 8 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+ 9 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+10 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+11 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+12 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 09:24:19 --> [DEPRECATED] Creation of dynamic property CodeIgniter\HTTP\IncomingRequest::$rateLimit is deprecated in APPPATH\Filters\RateLimitFilter.php on line 129.
+ 1 APPPATH\Filters\RateLimitFilter.php(58): App\Filters\RateLimitFilter->addRateLimitHeaders(Object(CodeIgniter\HTTP\IncomingRequest), 1, 60, 1778232319)
+ 2 SYSTEMPATH\Filters\Filters.php(241): App\Filters\RateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\Filters\Filters.php(221): CodeIgniter\Filters\Filters->runBefore([...])
+ 4 SYSTEMPATH\CodeIgniter.php(465): CodeIgniter\Filters\Filters->run('auth/login', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(Object(CodeIgniter\Router\RouteCollection), Object(Config\Cache), true)
+ 6 SYSTEMPATH\Test\FeatureTestTrait.php(234): CodeIgniter\CodeIgniter->run(Object(CodeIgniter\Router\RouteCollection), true)
+ 7 SYSTEMPATH\Test\FeatureTestTrait.php(267): Tests\Unit\Filters\FilterIntegrationTest->call('POST', '/auth/login', [...])
+ 8 ROOTPATH\tests\unit\Filters\FilterIntegrationTest.php(42): Tests\Unit\Filters\FilterIntegrationTest->post('/auth/login', [...])
+ 9 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Unit\Filters\FilterIntegrationTest->testRateLimitFilterAppliedToLoginRoute()
+10 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+11 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+12 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Unit\Filters\FilterIntegrationTest))
+13 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+14 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+15 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+16 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+17 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')
+WARNING - 2026-05-08 09:24:33 --> [DEPRECATED] Creation of dynamic property CodeIgniter\HTTP\IncomingRequest::$rateLimit is deprecated in APPPATH\Filters\RateLimitFilter.php on line 129.
+ 1 APPPATH\Filters\RateLimitFilter.php(58): App\Filters\RateLimitFilter->addRateLimitHeaders(Object(CodeIgniter\HTTP\IncomingRequest), 1, 60, 1778232333)
+ 2 ROOTPATH\tests\unit\Filters\RateLimitFilterTest.php(44): App\Filters\RateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest))
+ 3 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(1667): Tests\Unit\Filters\RateLimitFilterTest->testRateLimitFilterAllowsFirstRequest()
+ 4 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+ 5 VENDORPATH\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+ 6 VENDORPATH\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(Tests\Unit\Filters\RateLimitFilterTest))
+ 7 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+ 8 VENDORPATH\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+ 9 VENDORPATH\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+10 VENDORPATH\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+11 VENDORPATH\phpunit\phpunit\phpunit(104): PHPUnit\TextUI\Application->run([...])
+12 VENDORPATH\bin\phpunit(122): include('D:\\workspace\\d8-2\\htdocs\\app-review\\vendor\\phpunit\\phpunit\\phpunit')

@@ -1,0 +1,11 @@
+Trending Service (Tests\Unit\Services\TrendingService)
+ [ ] Calculate trending score with high views
+ [ ] Calculate trending score with high reviews
+ [ ] Calculate trending score with high scam reports
+ [ ] Calculate trending score combined
+ [ ] Calculate trending score with no activity
+ [ ] Get trending apps returns top apps
+ [ ] Get trending apps caches results
+ [ ] Track view increments activity log
+ [ ] Update daily trending updates all apps
+

@@ -1,0 +1,30 @@
+CRITICAL - 2026-05-11 07:35:22 --> CodeIgniter\Filters\Exceptions\FilterException: "auth|ratelimit" filter must have a matching alias defined.
+[Method: CLI, Route: routes]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth|ratelimit')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth|ratelimit', 'before')
+ 3 SYSTEMPATH\Commands\Utilities\Routes\FilterFinder.php(58): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\Commands\Utilities\Routes\FilterCollector.php(78): CodeIgniter\Commands\Utilities\Routes\FilterFinder->find('reviews/submit')
+ 5 SYSTEMPATH\Commands\Utilities\Routes.php(110): CodeIgniter\Commands\Utilities\Routes\FilterCollector->get('POST', 'reviews/submit')
+ 6 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Utilities\Routes->run([])
+ 7 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('routes', [])
+ 8 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 9 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+10 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-05-11 07:35:29 --> CodeIgniter\Filters\Exceptions\FilterException: "auth|ratelimit" filter must have a matching alias defined.
+[Method: CLI, Route: routes]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth|ratelimit')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth|ratelimit', 'before')
+ 3 SYSTEMPATH\Commands\Utilities\Routes\FilterFinder.php(58): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\Commands\Utilities\Routes\FilterCollector.php(78): CodeIgniter\Commands\Utilities\Routes\FilterFinder->find('reviews/submit')
+ 5 SYSTEMPATH\Commands\Utilities\Routes.php(110): CodeIgniter\Commands\Utilities\Routes\FilterCollector->get('POST', 'reviews/submit')
+ 6 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Utilities\Routes->run([])
+ 7 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('routes', [])
+ 8 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
+ 9 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+10 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-05-11 07:47:21 --> ErrorException: Declaration of App\Models\SettingModel::set(string $key, $value, string $type = 'string', ?string $description = null): bool must be compatible with CodeIgniter\Model::set($key, $value = '', ?bool $escape = null)
+[Method: GET, Route: /]
+in APPPATH\Models\SettingModel.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
