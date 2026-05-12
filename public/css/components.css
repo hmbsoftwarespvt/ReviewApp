@@ -1,0 +1,203 @@
+/* ===== COMPONENTS CSS ===== */
+/* ===== NAVBAR ===== */
+.at-navbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.at-navbar .navbar-brand {
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.at-navbar .navbar-brand .brand-icon {
+    color: #2563EB;
+    font-size: 1.5rem;
+}
+
+.at-navbar .nav-link {
+    color: #4B5563;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.at-navbar .nav-link:hover { color: #2563EB; }
+
+.at-navbar .nav-link.active {
+    color: #2563EB;
+    border-bottom-color: #2563EB;
+}
+
+.btn-nav-login {
+    border: 1.5px solid #2563EB;
+    color: #2563EB;
+    background: transparent;
+    border-radius: 8px;
+    padding: 0.38rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-nav-login:hover { background: #EFF6FF; }
+
+/* ===== FOOTER ===== */
+.at-footer {
+    background: #1a1a2e;
+    color: #9CA3AF;
+    padding: 3rem 0 0;
+    margin-top: 3rem;
+}
+
+.at-footer .footer-brand {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.at-footer .footer-brand i { color: #2563EB; }
+
+.at-footer .footer-tagline { 
+    font-size: 0.85rem; 
+    color: #6B7280; 
+    max-width: 220px; 
+}
+
+.at-footer h6 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.at-footer ul { list-style: none; padding: 0; margin: 0; }
+
+.at-footer ul li { margin-bottom: 0.5rem; }
+
+.at-footer ul li a {
+    color: #9CA3AF;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+}
+
+.at-footer ul li a:hover { color: #fff; }
+
+.social-icons { 
+    display: flex; 
+    gap: 0.6rem; 
+    margin-top: 0.5rem; 
+}
+
+.social-icons a {
+    width: 36px; 
+    height: 36px;
+    border-radius: 8px;
+    background: #2d2d4e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.social-icons a:hover { background: #2563EB; color: #fff; }
+
+.footer-bottom {
+    border-top: 1px solid #2d2d4e;
+    padding: 1.25rem 0;
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #6B7280;
+}
+
+/* ===== HERO ===== */
+.at-hero {
+    background: linear-gradient(135deg, #F8FAFC 0%, #E0E7FF 100%);
+    padding: 5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.at-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.at-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.at-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.at-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #111827;
+    margin-bottom: 1.5rem;
+}
+
+.at-hero h1 .highlight {
+    color: #2563EB;
+    position: relative;
+}
+
+.at-hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563EB 0%, #7C3AED 100%);
+    border-radius: 2px;
+}
+
+.at-hero .hero-sub {
+    color: #6B7280;
+    font-size: 1.1rem;
+    margin: 0 auto 2rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .at-hero { padding: 2.5rem 0 2rem; }
+    .at-hero h1 { font-size: 2rem; }
+}

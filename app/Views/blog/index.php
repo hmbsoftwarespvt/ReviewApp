@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title) ?> - AppTrust Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
+<?= $this->extend('base_template') ?>
+
+<?= $this->section('content') ?>
+
+<style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -147,48 +143,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="<?= base_url('/') ?>">
-                <i class="bi bi-shield-check"></i> AppTrust
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('apps') ?>">Apps</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('categories') ?>">Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('scam-alerts') ?>">Scam Alerts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url('blog') ?>">Blog</a>
-                    </li>
-                    <?php if (session()->get('isLoggedIn')): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('auth/login') ?>">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('auth/register') ?>">Register</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <!-- Blog Header -->
     <section class="blog-header">
@@ -401,61 +355,5 @@
         <?php endif; ?>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">
-                        <i class="bi bi-shield-check"></i> AppTrust
-                    </h5>
-                    <p class="text-muted">
-                        Your trusted source for app reviews, trust scores, and scam alerts. Make informed decisions about app safety.
-                    </p>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Platform</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('apps') ?>">Browse Apps</a></li>
-                        <li><a href="<?= base_url('categories') ?>">Categories</a></li>
-                        <li><a href="<?= base_url('scam-alerts') ?>">Scam Alerts</a></li>
-                        <li><a href="<?= base_url('compare') ?>">Compare Apps</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Resources</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('blog') ?>">Blog</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Legal</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Connect</h6>
-                    <div class="d-flex gap-3">
-                        <a href="#"><i class="bi bi-twitter" style="font-size: 1.5rem;"></i></a>
-                        <a href="#"><i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a>
-                        <a href="#"><i class="bi bi-linkedin" style="font-size: 1.5rem;"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="text-center text-muted">
-                <p>&copy; <?= date('Y') ?> AppTrust Platform. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <?= $this->endSection() ?>
 

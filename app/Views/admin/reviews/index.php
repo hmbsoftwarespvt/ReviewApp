@@ -212,7 +212,7 @@
                                                 <!-- Review Meta -->
                                                 <div class="text-muted small mt-3">
                                                     <i class="bi bi-app"></i> App: 
-                                                    <a href="<?= base_url('app/' . esc($review['app_slug'])) ?>" target="_blank">
+                                                    <a href="<?= base_url('apps/' . esc($review['app_slug'])) ?>" target="_blank">
                                                         <?= esc($review['app_name']) ?>
                                                     </a>
                                                     <span class="mx-2">|</span>

@@ -209,15 +209,18 @@ class AuthController extends BaseController
             'last_login' => date('Y-m-d H:i:s'),
         ]);
 
-        // Create session with 30-day expiration
+        // Create session
         $session = session();
         
-        // Set session expiration to 30 days (2592000 seconds)
-        $session->setTempdata('user_id', $user['id'], 2592000);
-        $session->setTempdata('username', $user['username'], 2592000);
-        $session->setTempdata('email', $user['email'], 2592000);
-        $session->setTempdata('role', $user['role'], 2592000);
-        $session->setTempdata('logged_in', true, 2592000);
+        $session->set([
+            'user_id'   => $user['id'],
+            'username'  => $user['username'],
+            'email'     => $user['email'],
+            'role'      => $user['role'],
+            'status'    => $user['status'],
+            'logged_in' => true,
+            'isLoggedIn'=> true,
+        ]);
 
         // Redirect based on role
         if ($user['role'] === 'admin') {

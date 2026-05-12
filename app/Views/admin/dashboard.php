@@ -292,7 +292,7 @@
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('app/' . esc($app['slug'])) ?>" target="_blank">
+                                                    <a href="<?= base_url('apps/' . esc($app['slug'])) ?>" target="_blank">
                                                         <?= esc($app['name']) ?>
                                                     </a>
                                                 </td>
@@ -332,7 +332,7 @@
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('app/' . esc($app['slug'])) ?>" target="_blank">
+                                                    <a href="<?= base_url('apps/' . esc($app['slug'])) ?>" target="_blank">
                                                         <?= esc($app['name']) ?>
                                                     </a>
                                                 </td>

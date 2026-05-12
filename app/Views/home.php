@@ -20,6 +20,8 @@ function getTrustMeta($score) {
 
 $isLoggedIn = session()->get('isLoggedIn');
 ?>
+<?= $this->extend('base_template') ?>
+<?= $this->section('content') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -734,55 +736,6 @@ $isLoggedIn = session()->get('isLoggedIn');
 </head>
 <body>
 
-<!-- ===== NAVIGATION BAR ===== -->
-<nav class="at-navbar">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
-            <!-- Logo -->
-            <a href="<?= base_url('/') ?>" class="navbar-brand">
-                <i class="bi bi-shield-fill-check brand-icon"></i>
-                AppTrust
-            </a>
-
-            <!-- Center Nav Links -->
-            <ul class="nav d-none d-lg-flex align-items-center mb-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="<?= base_url('/') ?>">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('categories') ?>">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('trending') ?>">Trending</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('scam-alerts') ?>">Scam Alerts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('compare') ?>">Compare</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('blog') ?>">Blog</a>
-                </li>
-            </ul>
-
-            <!-- Right: Search + Buttons -->
-            <div class="d-flex align-items-center gap-2">
-                <form action="<?= base_url('search') ?>" method="GET" class="d-none d-md-flex">
-                    <input type="text" name="q" class="nav-search" placeholder="Search apps...">
-                </form>
-                <?php if ($isLoggedIn): ?>
-                    <a href="<?= base_url('dashboard') ?>" class="btn-nav-login">Dashboard</a>
-                    <a href="<?= base_url('logout') ?>" class="btn-nav-signup">Logout</a>
-                <?php else: ?>
-                    <a href="<?= base_url('login') ?>" class="btn-nav-login">Login</a>
-                    <a href="<?= base_url('register') ?>" class="btn-nav-signup">Sign Up</a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- ===== HERO SECTION ===== -->
 <section class="at-hero">
     <div class="container">
@@ -857,7 +810,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                         <span>Downloads: <strong>10M+</strong></span>
                         <span>Updated: <strong>2 days ago</strong></span>
                     </div>
-                    <a href="<?= base_url('app/' . esc($featured_app['slug'] ?? '')) ?>" class="btn-view-review">
+                    <a href="<?= base_url('apps/' . esc($featured_app['slug'] ?? '')) ?>" class="btn-view-review">
                         View Full Review
                     </a>
                 </div>
@@ -972,7 +925,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                         else $starsDisplay .= '☆';
                     }
                 ?>
-                <a href="<?= base_url('app/' . esc($app['slug'] ?? '')) ?>" class="trending-app-card text-decoration-none">
+                <a href="<?= base_url('apps/' . esc($app['slug'] ?? '')) ?>" class="trending-app-card text-decoration-none">
                     <div class="t-icon" style="background:<?= $iconBg ?>;">
                         <?php if (!empty($app['thumbnail'])): ?>
                             <img src="<?= esc($app['thumbnail']) ?>" alt="<?= esc($app['name'] ?? '') ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
@@ -1383,136 +1336,6 @@ $isLoggedIn = session()->get('isLoggedIn');
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="at-footer">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Brand -->
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-brand">
-                    <i class="bi bi-shield-fill-check"></i>
-                    AppTrust
-                </div>
-                <p class="footer-tagline">Pakistan's most trusted platform for app reviews, scam alerts, and honest user experiences.</p>
-                <div class="social-icons mt-3">
-                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-lg-2 col-md-6 col-6">
-                <h6>Quick Links</h6>
-                <ul>
-                    <li><a href="<?= base_url('/') ?>">Home</a></li>
-                    <li><a href="<?= base_url('trending') ?>">Trending Apps</a></li>
-                    <li><a href="<?= base_url('scam-alerts') ?>">Scam Alerts</a></li>
-                    <li><a href="<?= base_url('compare') ?>">Compare Apps</a></li>
-                    <li><a href="<?= base_url('blog') ?>">Blog</a></li>
-                    <li><a href="<?= base_url('about') ?>">About Us</a></li>
-                </ul>
-            </div>
-
-            <!-- Categories -->
-            <div class="col-lg-2 col-md-6 col-6">
-                <h6>Categories</h6>
-                <ul>
-                    <li><a href="<?= base_url('category/earning-apps') ?>">Earning Apps</a></li>
-                    <li><a href="<?= base_url('category/ai-tools') ?>">AI Tools</a></li>
-                    <li><a href="<?= base_url('category/finance') ?>">Finance</a></li>
-                    <li><a href="<?= base_url('category/shopping') ?>">Shopping</a></li>
-                    <li><a href="<?= base_url('category/crypto') ?>">Crypto</a></li>
-                    <li><a href="<?= base_url('categories') ?>">All Categories</a></li>
-                </ul>
-            </div>
-
-            <!-- Support -->
-            <div class="col-lg-2 col-md-6 col-6">
-                <h6>Support</h6>
-                <ul>
-                    <li><a href="<?= base_url('contact') ?>">Contact Us</a></li>
-                    <li><a href="<?= base_url('report-scam') ?>">Report a Scam</a></li>
-                    <li><a href="<?= base_url('submit-app') ?>">Submit an App</a></li>
-                    <li><a href="<?= base_url('faq') ?>">FAQ</a></li>
-                    <li><a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a></li>
-                    <li><a href="<?= base_url('terms') ?>">Terms of Use</a></li>
-                </ul>
-            </div>
-
-            <!-- Follow Us -->
-            <div class="col-lg-3 col-md-6 col-6">
-                <h6>Follow Us</h6>
-                <p style="font-size:0.85rem;color:#6B7280;margin-bottom:0.75rem;">Stay connected for the latest scam alerts and app reviews.</p>
-                <ul>
-                    <li>
-                        <a href="#" style="display:flex;align-items:center;gap:0.5rem;">
-                            <i class="bi bi-facebook" style="color:#1877F2;"></i> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" style="display:flex;align-items:center;gap:0.5rem;">
-                            <i class="bi bi-youtube" style="color:#FF0000;"></i> YouTube
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" style="display:flex;align-items:center;gap:0.5rem;">
-                            <i class="bi bi-instagram" style="color:#E1306C;"></i> Instagram
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" style="display:flex;align-items:center;gap:0.5rem;">
-                            <i class="bi bi-telegram" style="color:#0088CC;"></i> Telegram
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <div class="container">
-            <span>© <?= date('Y') ?> AppTrust. All rights reserved. Made with ❤️ for Pakistan.</span>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-// Simple review slider (show/hide sets of 3)
-(function() {
-    var container = document.getElementById('reviewsContainer');
-    if (!container) return;
-    var cards = container.querySelectorAll('.col-md-4');
-    if (cards.length <= 3) return;
-
-    var perPage = 3;
-    var current = 0;
-    var total = cards.length;
-
-    function showPage(page) {
-        cards.forEach(function(card, i) {
-            card.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? '' : 'none';
-        });
-    }
-
-    showPage(0);
-
-    var prevBtn = document.getElementById('reviewPrev');
-    var nextBtn = document.getElementById('reviewNext');
-
-    if (prevBtn) prevBtn.addEventListener('click', function() {
-        current = (current - 1 + Math.ceil(total / perPage)) % Math.ceil(total / perPage);
-        showPage(current);
-    });
-    if (nextBtn) nextBtn.addEventListener('click', function() {
-        current = (current + 1) % Math.ceil(total / perPage);
-        showPage(current);
-    });
-})();
-</script>
-</body>
-</html>
+                    
+    
+    <?= $this->endSection() ?>

@@ -180,7 +180,7 @@ class SearchController extends BaseController
             $suggestions[] = [
                 'name' => $app['name'],
                 'developer' => $app['developer_name'],
-                'url' => base_url("app/{$app['slug']}"),
+                'url' => base_url("apps/{$app['slug']}"),
             ];
         }
         

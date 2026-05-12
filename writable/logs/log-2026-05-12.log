@@ -1,0 +1,55 @@
+CRITICAL - 2026-05-12 10:41:08 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ScamReportModel::getRecent
+[Method: GET, Route: trending]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\TrendingController.php(46): CodeIgniter\Model->__call('getRecent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\TrendingController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TrendingController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-12 10:41:30 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ScamReportModel::getRecent
+[Method: GET, Route: trending]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\TrendingController.php(46): CodeIgniter\Model->__call('getRecent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\TrendingController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TrendingController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-12 10:43:03 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ScamReportModel::getRecent
+[Method: GET, Route: trending]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\TrendingController.php(41): CodeIgniter\Model->__call('getRecent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\TrendingController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TrendingController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-12 10:43:11 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ScamReportModel::getRecent
+[Method: GET, Route: trending]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\TrendingController.php(41): CodeIgniter\Model->__call('getRecent', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\TrendingController->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TrendingController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-12 11:25:45 --> ErrorException: Undefined variable $content
+[Method: GET, Route: trending]
+in APPPATH\Views\base_template.php on line 14.
+ 1 APPPATH\Views\base_template.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $content', 'D:\\workspace\\d8-2\\htdocs\\app-review\\app\\Views\\base_template.php', 14)
+ 2 SYSTEMPATH\View\View.php(240): include('D:\\workspace\\d8-2\\htdocs\\app-review\\app\\Views\\base_template.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(256): CodeIgniter\View\View->render('base_template', [], true)
+ 5 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('trending/index', [], true)
+ 6 APPPATH\Controllers\TrendingController.php(62): view('trending/index', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\TrendingController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TrendingController))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

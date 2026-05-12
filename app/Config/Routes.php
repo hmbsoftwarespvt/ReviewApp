@@ -100,6 +100,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
 // App routes
 $routes->get('apps', 'Public\AppController::index');
 $routes->get('apps/(:segment)', 'AppController::show/$1');
+$routes->get('app/(:segment)', 'AppController::show/$1');  // singular alias
 $routes->post('apps/submit-review/(:num)', 'AppController::submitReview/$1', ['filter' => ['auth', 'ratelimit']]);
 $routes->post('apps/submit-scam-report/(:num)', 'AppController::submitScamReport/$1', ['filter' => ['auth', 'ratelimit']]);
 
@@ -109,6 +110,10 @@ $routes->get('search', 'SearchController::index');
 // Categories
 $routes->get('categories', 'CategoryController::index');
 $routes->get('categories/(:segment)', 'CategoryController::show/$1');
+
+// Trending
+$routes->get('trending', 'TrendingController::index');
+$routes->get('trending/filter', 'TrendingController::filterByCategory');
 
 // Scam Alerts
 $routes->get('scam-alerts', 'ScamAlertController::index');
