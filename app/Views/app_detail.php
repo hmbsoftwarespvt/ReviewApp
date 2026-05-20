@@ -196,6 +196,11 @@
                             <i class="bi bi-download"></i> Download
                         </a>
                     <?php endif; ?>
+                    <?php if (!empty($app['youtube_link'])): ?>
+                        <a href="<?= esc($app['youtube_link']) ?>" target="_blank" class="btn-primary-apptrust mt-3 ms-2" style="padding: 12px 24px; background-color: #FF0000;">
+                            <i class="bi bi-youtube"></i> Watch Review
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

@@ -108,6 +108,7 @@ class AppManagementController extends BaseController
             'developer_name' => 'required|max_length[255]',
             'release_date' => 'permit_empty|valid_date',
             'download_url' => 'permit_empty|valid_url|max_length[500]',
+            'youtube_link' => 'permit_empty|valid_url|max_length[500]',
             'approval_status' => 'permit_empty|in_list[pending,approved,rejected]',
             'categories' => 'permit_empty',
             'permissions' => 'permit_empty',
@@ -115,6 +116,16 @@ class AppManagementController extends BaseController
             'third_party_sdk_count' => 'permit_empty|integer|greater_than_equal_to[0]',
             'screenshots.*' => 'permit_empty|uploaded[screenshots]|max_size[screenshots,2048]|is_image[screenshots]',
         ];
+        
+        // Auto-generate slug from name if not provided
+        $slug = $this->request->getPost('slug');
+        $name = $this->request->getPost('name');
+        
+        if (empty($slug) && !empty($name)) {
+            $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
+            $slug = preg_replace('/^-+|-+$/', '', $slug);
+            $_POST['slug'] = $slug;
+        }
         
         if (!$this->validate($rules)) {
             return redirect()->back()
@@ -134,6 +145,7 @@ class AppManagementController extends BaseController
             'developer_name' => $this->request->getPost('developer_name'),
             'release_date' => $this->request->getPost('release_date'),
             'download_url' => $this->request->getPost('download_url'),
+            'youtube_link' => $this->request->getPost('youtube_link'),
             'approval_status' => $this->request->getPost('approval_status') ?? 'pending',
             'has_encryption' => $this->request->getPost('has_encryption') ?? 0,
             'third_party_sdk_count' => $this->request->getPost('third_party_sdk_count') ?? 0,
@@ -223,7 +235,6 @@ class AppManagementController extends BaseController
         
         $rules = [
             'name' => 'required|max_length[255]',
-            'slug' => "required|max_length[255]|alpha_dash|is_unique[apps.slug,id,{$id}]",
             'description' => 'permit_empty',
             'version' => 'permit_empty|max_length[50]',
             'size' => 'permit_empty|max_length[50]',
@@ -232,6 +243,7 @@ class AppManagementController extends BaseController
             'developer_name' => 'required|max_length[255]',
             'release_date' => 'permit_empty|valid_date',
             'download_url' => 'permit_empty|valid_url|max_length[500]',
+            'youtube_link' => 'permit_empty|valid_url|max_length[500]',
             'approval_status' => 'permit_empty|in_list[pending,approved,rejected]',
             'categories' => 'permit_empty',
             'permissions' => 'permit_empty',
@@ -239,6 +251,29 @@ class AppManagementController extends BaseController
             'third_party_sdk_count' => 'permit_empty|integer|greater_than_equal_to[0]',
             'screenshots.*' => 'permit_empty|uploaded[screenshots]|max_size[screenshots,2048]|is_image[screenshots]',
         ];
+        
+        // Auto-generate slug from name if name changed and slug not provided
+        $slug = $this->request->getPost('slug');
+        $name = $this->request->getPost('name');
+        $oldName = $app['name'] ?? '';
+        
+        // If name changed and slug is empty, auto-generate slug
+        if ($name !== $oldName && empty($slug)) {
+            $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name));
+            $slug = preg_replace('/^-+|-+$/', '', $slug);
+            $_POST['slug'] = $slug;
+        }
+        
+        // If slug is provided, validate it; otherwise keep existing slug
+        if (empty($slug)) {
+            $slug = $app['slug'];
+            $_POST['slug'] = $slug;
+        }
+        
+        // Only validate slug if it's provided (not empty)
+        if (!empty($this->request->getPost('slug'))) {
+            $rules['slug'] = "max_length[255]|alpha_dash|is_unique[apps.slug,id,{$id}]";
+        }
         
         if (!$this->validate($rules)) {
             return redirect()->back()
@@ -258,6 +293,7 @@ class AppManagementController extends BaseController
             'developer_name' => $this->request->getPost('developer_name'),
             'release_date' => $this->request->getPost('release_date'),
             'download_url' => $this->request->getPost('download_url'),
+            'youtube_link' => $this->request->getPost('youtube_link'),
             'approval_status' => $this->request->getPost('approval_status') ?? 'pending',
             'has_encryption' => $this->request->getPost('has_encryption') ?? 0,
             'third_party_sdk_count' => $this->request->getPost('third_party_sdk_count') ?? 0,

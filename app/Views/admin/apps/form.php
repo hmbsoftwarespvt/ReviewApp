@@ -46,6 +46,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('admin/categories') ?>">
+                                <i class="bi bi-tags"></i> Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('admin/reviews') ?>">
                                 <i class="bi bi-star"></i> Reviews
                             </a>
@@ -135,11 +140,11 @@
                                 </div>
                                 
                                 <div class="col-md-6 mb-3">
-                                    <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
+                                    <label for="slug" class="form-label">Slug</label>
                                     <input type="text" class="form-control <?= isset($errors['slug']) ? 'is-invalid' : '' ?>" 
-                                           id="slug" name="slug" required
+                                           id="slug" name="slug"
                                            value="<?= esc($old['slug'] ?? $app['slug'] ?? '') ?>">
-                                    <small class="text-muted">URL-friendly identifier (e.g., my-app-name)</small>
+                                    <small class="text-muted">URL-friendly identifier (auto-generated from name)</small>
                                 </div>
                             </div>
                             
@@ -209,6 +214,14 @@
                                            placeholder="https://..."
                                            value="<?= esc($old['download_url'] ?? $app['download_url'] ?? '') ?>">
                                 </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="youtube_link" class="form-label">YouTube Review Link</label>
+                                <input type="url" class="form-control" id="youtube_link" name="youtube_link"
+                                       placeholder="https://www.youtube.com/watch?v=..."
+                                       value="<?= esc($old['youtube_link'] ?? $app['youtube_link'] ?? '') ?>">
+                                <small class="text-muted">Link to YouTube review video for this app</small>
                             </div>
                         </div>
                     </div>

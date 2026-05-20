@@ -35,6 +35,7 @@ class AppModel extends Model
         'developer_name',
         'release_date',
         'download_url',
+        'youtube_link',
         'trust_score',
         'security_score',
         'developer_reputation',
@@ -55,6 +56,7 @@ class AppModel extends Model
 
     // Validation
     protected $validationRules = [
+        'id'            => 'permit_empty|integer',
         'name'          => 'required|max_length[255]',
         'slug'          => 'required|max_length[255]|alpha_dash|is_unique[apps.slug,id,{id}]',
         'platform_type' => 'required|in_list[android,ios,web,desktop]',
@@ -96,6 +98,17 @@ class AppModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    /**
+     * Override update to ensure the primary key is present in data for validation placeholders.
+     */
+    public function update($id = null, $data = null): bool
+    {
+        if (is_array($data) && !isset($data[$this->primaryKey])) {
+            $data[$this->primaryKey] = $id;
+        }
+        return parent::update($id, $data);
+    }
 
     /**
      * Find app by slug

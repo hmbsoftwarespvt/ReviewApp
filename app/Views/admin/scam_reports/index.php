@@ -66,6 +66,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url('admin/categories') ?>">
+                                <i class="bi bi-tags"></i> Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('admin/reviews') ?>">
                                 <i class="bi bi-star"></i> Reviews
                             </a>
