@@ -1045,7 +1045,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                     <?php endif; ?>
 
                     <div class="scam-alerts-footer">
-                        <a href="<?= base_url('report-scam') ?>" class="btn-report-scam">
+                        <a href="<?= base_url('scam-alerts/report') ?>" class="btn-report-scam">
                             <i class="bi bi-megaphone-fill me-1"></i> 🚨 Report a Scam
                         </a>
                     </div>
@@ -1101,7 +1101,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                 }
             ?>
             <div class="col">
-                <a href="<?= base_url('category/' . esc($cat['slug'] ?? '')) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url('categories/' . esc($cat['slug'] ?? '')) ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $catStyle['bg'] ?>;">
                         <i class="bi <?= $catStyle['icon'] ?>" style="color:<?= $catStyle['color'] ?>;"></i>
                     </div>
@@ -1114,7 +1114,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                 $dc = $defaultCategories[$i];
             ?>
             <div class="col">
-                <a href="<?= base_url('category/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url('categories/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $dc['bg'] ?>;">
                         <i class="bi <?= $dc['icon'] ?>" style="color:<?= $dc['color'] ?>;"></i>
                     </div>
@@ -1127,7 +1127,7 @@ $isLoggedIn = session()->get('isLoggedIn');
             <!-- All default categories -->
             <?php foreach ($defaultCategories as $dc): ?>
             <div class="col">
-                <a href="<?= base_url('category/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url('categories/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $dc['bg'] ?>;">
                         <i class="bi <?= $dc['icon'] ?>" style="color:<?= $dc['color'] ?>;"></i>
                     </div>

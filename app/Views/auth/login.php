@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - AppTrust Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -94,16 +95,35 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" 
-                           class="form-control <?= session('errors.password') ? 'is-invalid' : '' ?>" 
-                           id="password" 
-                           name="password" 
-                           placeholder="Enter password"
-                           required>
+                    <div class="input-group">
+                        <input type="password" 
+                               class="form-control <?= session('errors.password') ? 'is-invalid' : '' ?>" 
+                               id="password" 
+                               name="password" 
+                               placeholder="Enter password"
+                               required>
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword" tabindex="-1">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
                     <?php if (session('errors.password')): ?>
-                        <div class="invalid-feedback"><?= session('errors.password') ?></div>
+                        <div class="invalid-feedback d-block"><?= session('errors.password') ?></div>
                     <?php endif; ?>
                 </div>
+
+                <script>
+                document.getElementById('togglePassword')?.addEventListener('click', function() {
+                    const input = document.getElementById('password');
+                    const icon = this.querySelector('i');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('bi-eye', 'bi-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('bi-eye-slash', 'bi-eye');
+                    }
+                });
+                </script>
 
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="remember" name="remember">

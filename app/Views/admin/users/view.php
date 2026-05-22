@@ -209,6 +209,14 @@
                                                 <span class="text-success"><i class="bi bi-check-circle-fill"></i> Yes</span>
                                             <?php else: ?>
                                                 <span class="text-warning"><i class="bi bi-x-circle-fill"></i> No</span>
+                                                <?php if ($user['role'] !== 'admin'): ?>
+                                                    <form method="POST" action="<?= base_url('admin/users/verify/' . $user['id']) ?>" class="d-inline ms-2">
+                                                        <?= csrf_field() ?>
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="bi bi-patch-check"></i> Verify Manually
+                                                        </button>
+                                                    </form>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

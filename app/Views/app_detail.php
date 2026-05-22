@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title) ?> - AppTrust Platform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?= base_url('css/apptrust-theme.css') ?>">
-    <style>
+<?= $this->extend('base_template') ?>
+<?= $this->section('content') ?>
+
+<link rel="stylesheet" href="<?= base_url('css/apptrust-theme.css') ?>">
+<style>
         /* App Detail Page Specific Styles */
         .app-header {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
@@ -94,40 +89,110 @@
         .star-rating-input input[type="radio"]:checked ~ label {
             color: #FBBF24;
         }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar-apptrust">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <a class="navbar-brand" href="<?= base_url('/') ?>">
-                    <div class="brand-icon">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <span>AppTrust</span>
-                </a>
-                
-                <div class="d-none d-lg-flex align-items-center gap-2">
-                    <a class="nav-link" href="<?= base_url('/') ?>">Home</a>
-                    <a class="nav-link active" href="<?= base_url('apps') ?>">Apps</a>
-                    <a class="nav-link" href="<?= base_url('categories') ?>">Categories</a>
-                    <a class="nav-link" href="<?= base_url('scam-alerts') ?>">Scam Alerts</a>
-                    <a class="nav-link" href="<?= base_url('blog') ?>">Blog</a>
-                </div>
-                
-                <div class="d-flex align-items-center gap-3">
-                    <?php if (session()->get('isLoggedIn')): ?>
-                        <a href="<?= base_url('auth/logout') ?>" class="btn-outline-apptrust">Logout</a>
-                    <?php else: ?>
-                        <a href="<?= base_url('auth/login') ?>" class="btn-outline-apptrust">Login</a>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- App Header -->
+        /* ===== SIMILAR APPS ===== */
+        .sim-section-wrap {
+            margin-top: 2rem;
+        }
+        .sim-section {
+            background: #fff;
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid #F3F4F6;
+        }
+        .sim-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        .sim-header i {
+            font-size: 1.3rem;
+            color: #2563EB;
+        }
+        .sim-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0;
+        }
+        .sim-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .sim-card {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #F9FAFB;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .sim-card:hover {
+            background: #EFF6FF;
+            transform: translateX(4px);
+        }
+        .sim-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .sim-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .sim-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sim-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #111827;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .sim-cat {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+            margin-top: 0.1rem;
+        }
+        .sim-score {
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .sim-arrow {
+            color: #D1D5DB;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .sim-card:hover .sim-arrow {
+            color: #2563EB;
+        }
+    </style>
+
+<!-- App Header -->
     <section class="app-header">
         <div class="container">
             <div class="row align-items-center">
@@ -659,60 +724,50 @@
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="col-lg-4">
-                <!-- Similar Apps -->
-                <?php if (!empty($similarApps)): ?>
-                    <div class="breakdown-card">
-                        <h3 class="section-title">Similar Apps</h3>
-                        <div class="row g-3">
-                            <?php foreach ($similarApps as $similarApp): ?>
-                                <div class="col-12">
-                                    <div class="card similar-app-card">
-                                        <div class="position-relative">
-                                            <?php
-                                            $similarTrustScore = (float)$similarApp['trust_score'];
-                                            $similarBadgeClass = 'trust-low';
-                                            if ($similarTrustScore >= 80) {
-                                                $similarBadgeClass = 'trust-high';
-                                            } elseif ($similarTrustScore >= 50) {
-                                                $similarBadgeClass = 'trust-medium';
-                                            }
-                                            ?>
-                                            <div class="position-absolute top-0 end-0 m-2">
-                                                <span class="badge <?= $similarBadgeClass ?>" style="font-size: 1rem;">
-                                                    <?= number_format($similarTrustScore, 0) ?>
-                                                </span>
-                                            </div>
-                                            
-                                            <?php if (!empty($similarApp['thumbnail'])): ?>
-                                                <img src="<?= base_url('uploads/thumbnails/' . esc($similarApp['thumbnail'])) ?>" class="similar-app-thumbnail" alt="<?= esc($similarApp['name']) ?>">
-                                            <?php else: ?>
-                                                <div class="similar-app-thumbnail d-flex align-items-center justify-content-center">
-                                                    <i class="bi bi-app text-white" style="font-size: 3rem;"></i>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                        
-                                        <div class="card-body">
-                                            <h6 class="card-title mb-2">
-                                                <a href="<?= base_url('apps/' . esc($similarApp['slug'])) ?>" class="text-decoration-none text-dark">
-                                                    <?= esc($similarApp['name']) ?>
-                                                </a>
-                                            </h6>
-                                            <p class="card-text text-muted small">
-                                                <?= esc(substr($similarApp['description'] ?? 'No description', 0, 60)) ?>...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <!-- Similar Apps - Full Width -->
+    <?php if (!empty($similarApps)): ?>
+    <div class="container sim-section-wrap">
+        <div class="sim-section">
+            <div class="sim-header">
+                <i class="bi bi-diagram-3"></i>
+                <h3>Similar Apps</h3>
+            </div>
+            <div class="sim-list">
+                <?php 
+                $iconColors = ['#2563EB','#7C3AED','#10B981','#F59E0B','#EF4444','#EC4899','#0EA5E9','#00C4A1'];
+                $simIdx = 0;
+                foreach ($similarApps as $similarApp): 
+                    $similarTrustScore = (float)$similarApp['trust_score'];
+                    $simColor = $iconColors[$simIdx % count($iconColors)];
+                    $simInitial = strtoupper(substr($similarApp['name'] ?? 'A', 0, 1));
+                    $simIdx++;
+                    $simMeta = $similarTrustScore >= 80 ? ['color' => '#10B981', 'bg' => '#D1FAE5', 'label' => 'Great'] : ($similarTrustScore >= 50 ? ['color' => '#F59E0B', 'bg' => '#FEF3C7', 'label' => 'Fair'] : ['color' => '#EF4444', 'bg' => '#FEE2E2', 'label' => 'Low']);
+                ?>
+                    <a href="<?= base_url('apps/' . esc($similarApp['slug'])) ?>" class="sim-card">
+                        <div class="sim-icon" style="background:<?= $simColor ?>;">
+                            <?php if (!empty($similarApp['thumbnail'])): ?>
+                                <img src="<?= base_url('uploads/thumbnails/' . esc($similarApp['thumbnail'])) ?>" alt="<?= esc($similarApp['name']) ?>">
+                            <?php else: ?>
+                                <?= esc($simInitial) ?>
+                            <?php endif; ?>
                         </div>
-                    </div>
-                <?php endif; ?>
+                        <div class="sim-info">
+                            <div class="sim-name"><?= esc($similarApp['name']) ?></div>
+                            <div class="sim-cat"><?= esc($similarApp['category_name'] ?? 'App') ?></div>
+                        </div>
+                        <div class="sim-score" style="background:<?= $simMeta['bg'] ?>;color:<?= $simMeta['color'] ?>;">
+                            <?= number_format($similarTrustScore, 0) ?>
+                        </div>
+                        <i class="bi bi-chevron-right sim-arrow"></i>
+                    </a>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 
     <!-- Screenshot Modal -->
     <div class="modal fade" id="screenshotModal" tabindex="-1">
@@ -729,50 +784,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">
-                        <i class="bi bi-shield-check"></i> AppTrust
-                    </h5>
-                    <p class="text-muted">
-                        Your trusted source for app reviews, trust scores, and scam alerts.
-                    </p>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Platform</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('apps') ?>">Browse Apps</a></li>
-                        <li><a href="<?= base_url('categories') ?>">Categories</a></li>
-                        <li><a href="<?= base_url('scam-alerts') ?>">Scam Alerts</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Resources</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('blog') ?>">Blog</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h6 class="fw-bold mb-3">Legal</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="text-center text-muted">
-                <p>&copy; <?= date('Y') ?> AppTrust Platform. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Screenshot modal handler
         const screenshotModal = document.getElementById('screenshotModal');
@@ -831,5 +842,5 @@
             });
         }
     </script>
-</body>
-</html>
+
+<?= $this->endSection() ?>

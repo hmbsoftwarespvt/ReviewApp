@@ -24,7 +24,15 @@ class AuthController extends BaseController
     }
 
     /**
-     * Display registration form
+     * Display user-facing registration form (frontend theme)
+     */
+    public function showUserRegister()
+    {
+        return view('auth/user_register', ['title' => 'Register']);
+    }
+
+    /**
+     * Display registration form (admin-style)
      */
     public function showRegister()
     {
@@ -111,15 +119,24 @@ class AuthController extends BaseController
         if ($this->userModel->insert($userData)) {
             // TODO: Send verification email with token (Task 33 - Email Notification Service)
             
-            return redirect()->to('/auth/login')
-                           ->with('success', 'Registration successful! Please check your email to verify your account.');
+            $verifyLink = base_url('auth/verify-email/' . $verificationToken);
+            return redirect()->to('/login')
+                           ->with('success', 'Registration successful! Please verify your email before logging in. <a href="' . $verifyLink . '" class="alert-link">Click here to verify</a>');
         }
 
         return redirect()->back()->withInput()->with('error', 'Registration failed. Please try again.');
     }
 
     /**
-     * Display login form
+     * Display user-facing login form (frontend theme)
+     */
+    public function showUserLogin()
+    {
+        return view('auth/user_login', ['title' => 'Login']);
+    }
+
+    /**
+     * Display login form (admin-style)
      */
     public function showLogin()
     {
@@ -180,6 +197,11 @@ class AuthController extends BaseController
         // Check if account is suspended or deleted
         if ($user['status'] !== 'active') {
             return redirect()->back()->withInput()->with('error', 'Account is not active. Please contact support.');
+        }
+
+        // Check if email is verified
+        if (!$user['email_verified']) {
+            return redirect()->back()->withInput()->with('error', 'Please verify your email address before logging in. <a href="' . base_url('auth/resend-verification/' . $user['id']) . '" class="alert-link">Resend verification email</a>');
         }
 
         // Verify password
@@ -248,6 +270,48 @@ class AuthController extends BaseController
     }
 
     /**
+     * Verify email address with token
+     */
+    public function verifyEmail(string $token)
+    {
+        $user = $this->userModel->where('verification_token', $token)->first();
+
+        if (!$user) {
+            return redirect()->to('/login')->with('error', 'Invalid or expired verification link.');
+        }
+
+        $this->userModel->update($user['id'], [
+            'email_verified'     => true,
+            'verification_token' => null,
+        ]);
+
+        return redirect()->to('/login')->with('success', 'Email verified successfully! You can now log in.');
+    }
+
+    /**
+     * Resend verification email
+     */
+    public function resendVerification(int $userId)
+    {
+        $user = $this->userModel->find($userId);
+
+        if (!$user) {
+            return redirect()->to('/login')->with('error', 'User not found.');
+        }
+
+        if ($user['email_verified']) {
+            return redirect()->to('/login')->with('success', 'Email is already verified. You can log in.');
+        }
+
+        $verificationToken = bin2hex(random_bytes(32));
+        $this->userModel->update($user['id'], [
+            'verification_token' => $verificationToken,
+        ]);
+
+        return redirect()->to('/login')->with('success', 'A verification email has been sent to ' . $user['email'] . '. Please check your inbox.');
+    }
+
+    /**
      * Display forgot password form
      */
     public function showForgotPassword()
@@ -291,7 +355,7 @@ class AuthController extends BaseController
 
         // Always show success message to prevent email enumeration
         if (!$user) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('success', 'If an account exists with that email, a password reset link has been sent.');
         }
 
@@ -310,7 +374,7 @@ class AuthController extends BaseController
         // TODO: Send password reset email with token (Task 33 - Email Notification Service)
         // Email should contain link: /auth/reset-password?token={$resetToken}
 
-        return redirect()->to('/auth/login')
+        return redirect()->to('/login')
                        ->with('success', 'If an account exists with that email, a password reset link has been sent.');
     }
 
@@ -324,7 +388,7 @@ class AuthController extends BaseController
         $token = $this->request->getGet('token');
 
         if (!$token) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Invalid or missing reset token.');
         }
 
@@ -332,14 +396,14 @@ class AuthController extends BaseController
         $user = $this->userModel->where('reset_token', $token)->first();
 
         if (!$user) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Invalid reset token.');
         }
 
         // Check if token is expired
         $expiresAt = strtotime($user['reset_token_expires']);
         if ($expiresAt < time()) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Reset token has expired. Please request a new password reset.');
         }
 
@@ -398,14 +462,14 @@ class AuthController extends BaseController
         $user = $this->userModel->where('reset_token', $token)->first();
 
         if (!$user) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Invalid reset token.');
         }
 
         // Check if token is expired
         $expiresAt = strtotime($user['reset_token_expires']);
         if ($expiresAt < time()) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Reset token has expired. Please request a new password reset.');
         }
 
@@ -422,7 +486,7 @@ class AuthController extends BaseController
             'account_locked_until' => null,
         ]);
 
-        return redirect()->to('/auth/login')
+        return redirect()->to('/login')
                        ->with('success', 'Password has been reset successfully. You can now log in with your new password.');
     }
 }

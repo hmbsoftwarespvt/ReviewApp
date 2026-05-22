@@ -159,6 +159,36 @@ class UserManagementController extends BaseController
     }
     
     /**
+     * Manually verify a user's email
+     * 
+     * @param int $id
+     * @return \CodeIgniter\HTTP\RedirectResponse
+     */
+    public function verify(int $id)
+    {
+        $user = $this->userModel->find($id);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        if ($user['email_verified']) {
+            return redirect()->back()->with('info', 'Email is already verified for this user.');
+        }
+
+        $success = $this->userModel->update($id, [
+            'email_verified'     => true,
+            'verification_token' => null,
+        ]);
+
+        if ($success) {
+            return redirect()->back()->with('success', 'Email verified successfully for ' . esc($user['username']) . '.');
+        }
+
+        return redirect()->back()->with('error', 'Failed to verify email.');
+    }
+
+    /**
      * Delete a user account and anonymize their content
      * 
      * @param int $id

@@ -163,7 +163,7 @@ class AppController extends BaseController
     {
         // Check if user is authenticated
         if (!session()->get('isLoggedIn')) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'You must be logged in to submit a review.');
         }
         
@@ -255,7 +255,7 @@ class AppController extends BaseController
     {
         // Check if user is authenticated
         if (!session()->get('isLoggedIn')) {
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'You must be logged in to submit a scam report.');
         }
         
