@@ -966,7 +966,7 @@ if (!function_exists('scamFormatNum')) {
                 <div class="report-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
                 <h6>Report a Scam</h6>
                 <p>Help others by reporting scam apps or websites.</p>
-                <a href="<?= base_url('report-scam') ?>" class="btn-report-now">
+                <a href="<?= base_url('scam-alerts/report') ?>" class="btn-report-now">
                     <i class="bi bi-flag-fill me-1"></i> Report Now
                 </a>
             </div>

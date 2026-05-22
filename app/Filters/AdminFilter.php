@@ -30,7 +30,7 @@ class AdminFilter implements FilterInterface
             // Store the intended URL to redirect back after login
             $session->set('redirect_url', current_url());
             
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'You must be logged in to access this page.');
         }
         

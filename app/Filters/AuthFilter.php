@@ -31,7 +31,7 @@ class AuthFilter implements FilterInterface
             $session->set('redirect_url', current_url());
             
             // Redirect to login page with error message
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'You must be logged in to access this page.');
         }
         
@@ -41,7 +41,7 @@ class AuthFilter implements FilterInterface
             // Destroy session for inactive accounts
             $session->destroy();
             
-            return redirect()->to('/auth/login')
+            return redirect()->to('/login')
                            ->with('error', 'Your account is not active. Please contact support.');
         }
     }

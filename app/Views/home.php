@@ -1073,7 +1073,7 @@ $isLoggedIn = session()->get('isLoggedIn');
             ['name'=>'Finance',        'slug'=>'finance',        'icon'=>'bi-graph-up',           'color'=>'#10B981','bg'=>'#D1FAE5'],
             ['name'=>'Shopping',       'slug'=>'shopping',       'icon'=>'bi-cart3',              'color'=>'#F97316','bg'=>'#FFEDD5'],
             ['name'=>'Crypto',         'slug'=>'crypto',         'icon'=>'bi-currency-bitcoin',   'color'=>'#F59E0B','bg'=>'#FEF3C7'],
-            ['name'=>'More',           'slug'=>'categories',     'icon'=>'bi-grid',               'color'=>'#6B7280','bg'=>'#F3F4F6'],
+            ['name'=>'More',           'slug'=>'',               'icon'=>'bi-grid',               'color'=>'#6B7280','bg'=>'#F3F4F6'],
         ];
 
         $catIconMap = [
@@ -1101,7 +1101,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                 }
             ?>
             <div class="col">
-                <a href="<?= base_url('categories/' . esc($cat['slug'] ?? '')) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url($cat['slug'] ? 'categories/' . esc($cat['slug']) : 'categories') ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $catStyle['bg'] ?>;">
                         <i class="bi <?= $catStyle['icon'] ?>" style="color:<?= $catStyle['color'] ?>;"></i>
                     </div>
@@ -1114,7 +1114,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                 $dc = $defaultCategories[$i];
             ?>
             <div class="col">
-                <a href="<?= base_url('categories/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url($dc['slug'] ? 'categories/' . $dc['slug'] : 'categories') ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $dc['bg'] ?>;">
                         <i class="bi <?= $dc['icon'] ?>" style="color:<?= $dc['color'] ?>;"></i>
                     </div>
@@ -1127,7 +1127,7 @@ $isLoggedIn = session()->get('isLoggedIn');
             <!-- All default categories -->
             <?php foreach ($defaultCategories as $dc): ?>
             <div class="col">
-                <a href="<?= base_url('categories/' . $dc['slug']) ?>" class="category-icon-card text-decoration-none">
+                <a href="<?= base_url($dc['slug'] ? 'categories/' . $dc['slug'] : 'categories') ?>" class="category-icon-card text-decoration-none">
                     <div class="cat-circle" style="background:<?= $dc['bg'] ?>;">
                         <i class="bi <?= $dc['icon'] ?>" style="color:<?= $dc['color'] ?>;"></i>
                     </div>

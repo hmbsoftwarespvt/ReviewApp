@@ -97,7 +97,7 @@
 
                     <div class="text-center mt-4">
                         <p class="mb-1">
-                            <a href="<?= base_url('auth/forgot-password') ?>" class="at-link">Forgot password?</a>
+                            <a href="<?= base_url('forgot-password') ?>" class="at-link">Forgot password?</a>
                         </p>
                         <p class="mb-0">Don't have an account?
                             <a href="<?= base_url('register') ?>" class="at-link">Register here</a>

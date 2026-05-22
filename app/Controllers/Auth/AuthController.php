@@ -117,11 +117,16 @@ class AuthController extends BaseController
 
         // Create user account
         if ($this->userModel->insert($userData)) {
-            // TODO: Send verification email with token (Task 33 - Email Notification Service)
-            
             $verifyLink = base_url('auth/verify-email/' . $verificationToken);
+            $sent = $this->sendVerificationEmail($userData['email'], $userData['username'], $verifyLink);
+            
+            if ($sent) {
+                return redirect()->to('/login')
+                               ->with('success', 'Registration successful! Please check your email to verify your account.');
+            }
+            
             return redirect()->to('/login')
-                           ->with('success', 'Registration successful! Please verify your email before logging in. <a href="' . $verifyLink . '" class="alert-link">Click here to verify</a>');
+                           ->with('error', 'Registration successful but failed to send verification email. Please use the resend option.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Registration failed. Please try again.');
@@ -308,15 +313,61 @@ class AuthController extends BaseController
             'verification_token' => $verificationToken,
         ]);
 
-        return redirect()->to('/login')->with('success', 'A verification email has been sent to ' . $user['email'] . '. Please check your inbox.');
+        $verifyLink = base_url('auth/verify-email/' . $verificationToken);
+        $sent = $this->sendVerificationEmail($user['email'], $user['username'], $verifyLink);
+
+        if ($sent) {
+            return redirect()->to('/login')->with('success', 'A verification email has been sent to ' . $user['email'] . '. Please check your inbox.');
+        }
+
+        return redirect()->to('/login')->with('error', 'Failed to send verification email. Please try again later.');
     }
 
     /**
-     * Display forgot password form
+     * Send verification email
+     */
+    protected function sendVerificationEmail(string $email, string $username, string $verifyLink): bool
+    {
+        try {
+            $emailService = \Config\Services::email();
+            $emailService->setFrom('info@hmbsoftwares.com', 'HMB Softwares');
+            $emailService->setTo($email);
+            $emailService->setSubject('Verify Your Email - AppTrust Platform');
+            $emailService->setMessage(
+                "Hi {$username},\n\n"
+                . "Thank you for registering with AppTrust Platform.\n\n"
+                . "Please verify your email address by clicking the link below:\n"
+                . "{$verifyLink}\n\n"
+                . "If you did not create an account, please ignore this email.\n\n"
+                . "Best regards,\n"
+                . "AppTrust Platform Team"
+            );
+
+            $result = $emailService->send();
+            if (!$result) {
+                log_message('error', 'Failed to send verification email: ' . $emailService->printDebugger(['headers']));
+            }
+            return $result;
+        } catch (\Exception $e) {
+            log_message('error', 'Exception sending verification email: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Display forgot password form (admin-style)
      */
     public function showForgotPassword()
     {
         return view('auth/forgot_password');
+    }
+
+    /**
+     * Display forgot password form (user-facing, frontend theme)
+     */
+    public function showUserForgotPassword()
+    {
+        return view('auth/user_forgot_password', ['title' => 'Forgot Password']);
     }
 
     /**
@@ -371,8 +422,26 @@ class AuthController extends BaseController
             'reset_token_expires' => $expiresAt,
         ]);
 
-        // TODO: Send password reset email with token (Task 33 - Email Notification Service)
-        // Email should contain link: /auth/reset-password?token={$resetToken}
+        $resetLink = base_url('auth/reset-password?token=' . $resetToken);
+        $emailService = \Config\Services::email();
+        $emailService->setFrom('info@hmbsoftwares.com', 'HMB Softwares');
+        $emailService->setTo($email);
+        $emailService->setSubject('Reset Your Password - AppTrust Platform');
+        $emailService->setMessage(
+            "Hi {$user['username']},\n\n"
+            . "You requested a password reset for your AppTrust Platform account.\n\n"
+            . "Click the link below to reset your password:\n"
+            . "{$resetLink}\n\n"
+            . "This link will expire in 60 minutes.\n\n"
+            . "If you did not request this, please ignore this email.\n\n"
+            . "Best regards,\n"
+            . "AppTrust Platform Team"
+        );
+
+        $sent = $emailService->send();
+        if (!$sent) {
+            log_message('error', 'Failed to send password reset email: ' . $emailService->printDebugger(['headers']));
+        }
 
         return redirect()->to('/login')
                        ->with('success', 'If an account exists with that email, a password reset link has been sent.');
