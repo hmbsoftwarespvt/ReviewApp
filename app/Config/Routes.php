@@ -19,6 +19,8 @@ $routes->get('register', 'Auth\AuthController::showUserRegister');
 $routes->post('register', 'Auth\AuthController::register', ['filter' => 'ratelimit']);
 $routes->get('logout', 'Auth\AuthController::logout', ['filter' => 'auth']);
 $routes->get('profile', 'ProfileController::index', ['filter' => 'auth']);
+$routes->get('forgot-password', 'Auth\AuthController::showUserForgotPassword');
+$routes->post('forgot-password', 'Auth\AuthController::forgotPassword', ['filter' => 'ratelimit']);
 
 $routes->group('auth', ['namespace' => 'App\Controllers\Auth'], function($routes) {
     // Registration (with rate limiting)
@@ -157,3 +159,4 @@ $routes->post('newsletter/subscribe', 'NewsletterController::subscribe', ['filte
 $routes->get('newsletter/confirm/(:segment)', 'NewsletterController::confirm/$1');
 $routes->get('newsletter/unsubscribe/(:segment)', 'NewsletterController::unsubscribePage/$1');
 $routes->post('newsletter/unsubscribe/(:segment)', 'NewsletterController::unsubscribe/$1');
+
