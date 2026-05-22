@@ -371,7 +371,97 @@ class AuthController extends BaseController
     }
 
     /**
-     * Handle forgot password request
+     * Display reset password form (user-facing, frontend theme)
+     */
+    public function showUserResetPassword()
+    {
+        $token = $this->request->getGet('token');
+
+        if (!$token) {
+            return redirect()->to('/login')
+                           ->with('error', 'Invalid or missing reset token.');
+        }
+
+        $user = $this->userModel->where('reset_token', $token)->first();
+
+        if (!$user) {
+            return redirect()->to('/login')
+                           ->with('error', 'Invalid reset token.');
+        }
+
+        $expiresAt = strtotime($user['reset_token_expires']);
+        if ($expiresAt < time()) {
+            return redirect()->to('/login')
+                           ->with('error', 'Reset token has expired. Please request a new password reset.');
+        }
+
+        return view('auth/user_reset_password', ['title' => 'Reset Password', 'token' => $token]);
+    }
+
+    /**
+     * Handle forgot password request (user-facing)
+     */
+    public function userForgotPassword()
+    {
+        $rules = [
+            'email' => [
+                'label'  => 'Email',
+                'rules'  => 'required|valid_email',
+                'errors' => [
+                    'required'    => 'Email is required',
+                    'valid_email' => 'Please provide a valid email address',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $email = $this->request->getPost('email');
+
+        $user = $this->userModel->where('email', $email)->first();
+
+        if (!$user) {
+            return redirect()->to('/login')
+                           ->with('success', 'If an account exists with that email, a password reset link has been sent.');
+        }
+
+        $resetToken = bin2hex(random_bytes(32));
+        $expiresAt = date('Y-m-d H:i:s', strtotime('+60 minutes'));
+
+        $this->userModel->update($user['id'], [
+            'reset_token'         => $resetToken,
+            'reset_token_expires' => $expiresAt,
+        ]);
+
+        $resetLink = base_url('reset-password?token=' . $resetToken);
+        $emailService = \Config\Services::email();
+        $emailService->setFrom('info@hmbsoftwares.com', 'HMB Softwares');
+        $emailService->setTo($email);
+        $emailService->setSubject('Reset Your Password - AppTrust Platform');
+        $emailService->setMessage(
+            "Hi {$user['username']},\n\n"
+            . "You requested a password reset for your AppTrust Platform account.\n\n"
+            . "Click the link below to reset your password:\n"
+            . "{$resetLink}\n\n"
+            . "This link will expire in 60 minutes.\n\n"
+            . "If you did not request this, please ignore this email.\n\n"
+            . "Best regards,\n"
+            . "AppTrust Platform Team"
+        );
+
+        $sent = $emailService->send();
+        if (!$sent) {
+            log_message('error', 'Failed to send password reset email: ' . $emailService->printDebugger(['headers']));
+        }
+
+        return redirect()->to('/login')
+                       ->with('success', 'If an account exists with that email, a password reset link has been sent.');
+    }
+
+    /**
+     * Handle forgot password request (admin-style)
      * 
      * Accepts: email
      * - Validates email exists in database

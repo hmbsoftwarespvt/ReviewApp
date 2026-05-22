@@ -20,7 +20,9 @@ $routes->post('register', 'Auth\AuthController::register', ['filter' => 'ratelim
 $routes->get('logout', 'Auth\AuthController::logout', ['filter' => 'auth']);
 $routes->get('profile', 'ProfileController::index', ['filter' => 'auth']);
 $routes->get('forgot-password', 'Auth\AuthController::showUserForgotPassword');
-$routes->post('forgot-password', 'Auth\AuthController::forgotPassword', ['filter' => 'ratelimit']);
+$routes->post('forgot-password', 'Auth\AuthController::userForgotPassword', ['filter' => 'ratelimit']);
+$routes->get('reset-password', 'Auth\AuthController::showUserResetPassword');
+$routes->post('reset-password', 'Auth\AuthController::resetPassword', ['filter' => 'ratelimit']);
 
 $routes->group('auth', ['namespace' => 'App\Controllers\Auth'], function($routes) {
     // Registration (with rate limiting)
