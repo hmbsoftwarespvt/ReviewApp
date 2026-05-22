@@ -12,6 +12,14 @@ $routes->get('/', 'Home::index');
  * Authentication Routes
  * --------------------------------------------------------------------
  */
+// User-facing login and registration
+$routes->get('login', 'Auth\AuthController::showUserLogin');
+$routes->post('login', 'Auth\AuthController::login', ['filter' => 'ratelimit']);
+$routes->get('register', 'Auth\AuthController::showUserRegister');
+$routes->post('register', 'Auth\AuthController::register', ['filter' => 'ratelimit']);
+$routes->get('logout', 'Auth\AuthController::logout', ['filter' => 'auth']);
+$routes->get('profile', 'ProfileController::index', ['filter' => 'auth']);
+
 $routes->group('auth', ['namespace' => 'App\Controllers\Auth'], function($routes) {
     // Registration (with rate limiting)
     $routes->get('register', 'AuthController::showRegister');
@@ -29,6 +37,10 @@ $routes->group('auth', ['namespace' => 'App\Controllers\Auth'], function($routes
     $routes->post('forgot-password', 'AuthController::forgotPassword', ['filter' => 'ratelimit']);
     $routes->get('reset-password', 'AuthController::showResetPassword');
     $routes->post('reset-password', 'AuthController::resetPassword', ['filter' => 'ratelimit']);
+    
+    // Email verification
+    $routes->get('verify-email/(:segment)', 'AuthController::verifyEmail/$1');
+    $routes->get('resend-verification/(:num)', 'AuthController::resendVerification/$1');
 });
 
 /*
@@ -68,6 +80,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
     $routes->post('users/suspend/(:num)', 'UserManagementController::suspend/$1');
     $routes->post('users/reactivate/(:num)', 'UserManagementController::reactivate/$1');
     $routes->post('users/delete/(:num)', 'UserManagementController::delete/$1');
+    $routes->post('users/verify/(:num)', 'UserManagementController::verify/$1');
     
     // Blog Management
     $routes->get('blog', 'BlogManagementController::index');
@@ -117,6 +130,9 @@ $routes->get('trending/filter', 'TrendingController::filterByCategory');
 
 // Scam Alerts
 $routes->get('scam-alerts', 'ScamAlertController::index');
+$routes->get('scam-alerts/report', 'ScamAlertController::reportForm');
+$routes->post('scam-alerts/report', 'ScamAlertController::submitReport', ['filter' => ['auth', 'ratelimit']]);
+$routes->get('scam-alerts/(:segment)', 'ScamAlertController::show/$1');
 
 // Blog
 $routes->get('blog', 'BlogController::index');
