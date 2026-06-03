@@ -111,7 +111,7 @@
             <div class="mb-3">
                 <label class="form-label">Current Featured Image</label>
                 <div>
-                    <img src="<?= base_url('writable/' . esc($post['featured_image'])) ?>" 
+                    <img src="<?= base_url(esc($post['featured_image'])) ?>" 
                          class="featured-image-preview border" alt="Featured Image">
                 </div>
                 <div class="form-check mt-2">

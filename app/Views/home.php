@@ -918,7 +918,7 @@ $isLoggedIn = session()->get('isLoggedIn');
                 <a href="<?= base_url('apps/' . esc($app['slug'] ?? '')) ?>" class="trending-app-card text-decoration-none">
                     <div class="t-icon" style="background:<?= $iconBg ?>;">
                         <?php if (!empty($app['thumbnail'])): ?>
-                            <img src="<?= esc($app['thumbnail']) ?>" alt="<?= esc($app['name'] ?? '') ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+                            <img src="<?= base_url('uploads/thumbnails/' . esc($app['thumbnail'])) ?>" alt="<?= esc($app['name'] ?? '') ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
                         <?php else: ?>
                             <?= esc($initial) ?>
                         <?php endif; ?>

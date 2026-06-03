@@ -178,7 +178,7 @@
                 <div class="d-flex flex-wrap gap-2">
                     <?php foreach ($app['screenshots'] as $screenshot): ?>
                     <div class="position-relative">
-                        <img src="<?= base_url('writable/' . esc($screenshot['file_path'])) ?>" 
+                        <img src="<?= base_url(esc($screenshot['file_path'])) ?>" 
                              style="max-width:120px;max-height:120px;object-fit:cover;border-radius:8px;border:2px solid #e2e8f0;" alt="Screenshot">
                         <div class="form-check position-absolute top-0 end-0 m-1 bg-white rounded p-1 shadow-sm">
                             <input class="form-check-input" type="checkbox" 
