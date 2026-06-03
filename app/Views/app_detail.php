@@ -491,8 +491,8 @@
                     <?php elseif (!session()->get('isLoggedIn')): ?>
                         <div class="alert alert-info">
                             <i class="bi bi-info-circle"></i> 
-                            <a href="<?= base_url('auth/login') ?>" class="alert-link">Login</a> or 
-                            <a href="<?= base_url('auth/register') ?>" class="alert-link">register</a> to write a review.
+                            <a href="<?= base_url('login') ?>" class="alert-link">Login</a> or 
+                            <a href="<?= base_url('register') ?>" class="alert-link">register</a> to write a review.
                         </div>
                     <?php endif; ?>
                     
@@ -665,8 +665,8 @@
                     <?php elseif (!session()->get('isLoggedIn')): ?>
                         <div class="alert alert-info">
                             <i class="bi bi-info-circle"></i> 
-                            <a href="<?= base_url('auth/login') ?>" class="alert-link">Login</a> or 
-                            <a href="<?= base_url('auth/register') ?>" class="alert-link">register</a> to report a scam.
+                            <a href="<?= base_url('login') ?>" class="alert-link">Login</a> or 
+                            <a href="<?= base_url('register') ?>" class="alert-link">register</a> to report a scam.
                         </div>
                     <?php endif; ?>
                     
@@ -676,7 +676,7 @@
                     <?php if (session()->get('isLoggedIn')): ?>
                         <div class="alert alert-warning">
                             <i class="bi bi-exclamation-triangle"></i> 
-                            <a href="<?= base_url('scam-reports/submit/' . $app['id']) ?>" class="alert-link">Report a scam</a> if you've experienced issues with this app.
+                            <a href="<?= base_url('scam-alerts/report?app=' . urlencode($app['name'])) ?>" class="alert-link">Report a scam</a> if you've experienced issues with this app.
                         </div>
                     <?php endif; ?>
                     

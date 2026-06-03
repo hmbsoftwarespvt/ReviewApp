@@ -36,10 +36,14 @@ class ReviewModerationController extends BaseController
     public function index(): string
     {
         // Get filter parameters from query string
-        $status = $this->request->getGet('status') ?? 'pending';
-        $rating = $this->request->getGet('rating') ?? null;
-        $dateFrom = $this->request->getGet('date_from') ?? null;
-        $dateTo = $this->request->getGet('date_to') ?? null;
+        $status = $this->request->getGet('status');
+        $status = ($status === '' || $status === null) ? 'pending' : $status;
+        $rating = $this->request->getGet('rating');
+        $rating = ($rating === '' || $rating === null) ? null : (int) $rating;
+        $dateFrom = $this->request->getGet('date_from');
+        $dateFrom = ($dateFrom === '' || $dateFrom === null) ? null : $dateFrom;
+        $dateTo = $this->request->getGet('date_to');
+        $dateTo = ($dateTo === '' || $dateTo === null) ? null : $dateTo;
         $page = (int) ($this->request->getGet('page') ?? 1);
         $perPage = 20;
         

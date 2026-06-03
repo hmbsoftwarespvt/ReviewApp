@@ -153,8 +153,7 @@ $routes->get('comparison/search', 'Comparison::search');
 $routes->post('reviews/submit', 'Public\ReviewController::submit', ['filter' => ['auth', 'ratelimit']]);
 $routes->post('reviews/helpful/(:num)', 'Public\ReviewController::markHelpful/$1', ['filter' => ['auth', 'ratelimit']]);
 
-// Scam report submission (requires authentication and rate limiting)
-$routes->post('scam-reports/submit', 'Public\ScamReportController::submit', ['filter' => ['auth', 'ratelimit']]);
+// Scam report submission handled via ScamAlertController
 
 // Newsletter subscription (with rate limiting)
 $routes->post('newsletter/subscribe', 'NewsletterController::subscribe', ['filter' => 'ratelimit']);
