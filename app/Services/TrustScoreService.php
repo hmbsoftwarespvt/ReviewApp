@@ -287,7 +287,11 @@ class TrustScoreService
      */
     protected function calculateAppAgeScore(array $app, float $maxPoints): array
     {
-        if (empty($app['release_date']) || !\DateTime::createFromFormat('Y-m-d', $app['release_date'])) {
+        try {
+            $releaseDate = new \DateTime($app['release_date'] ?? '');
+            $now = new \DateTime();
+            $ageDays = (int) $releaseDate->diff($now)->days;
+        } catch (\Exception $e) {
             return [
                 'score' => 0,
                 'max_points' => $maxPoints,
@@ -295,10 +299,6 @@ class TrustScoreService
                 'label' => 'App Age',
             ];
         }
-        
-        $releaseDate = Time::parse($app['release_date']);
-        $now = Time::now();
-        $ageDays = $now->difference($releaseDate)->getDays();
         
         // Determine score based on age
         $score = 0;
