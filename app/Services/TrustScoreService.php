@@ -287,7 +287,7 @@ class TrustScoreService
      */
     protected function calculateAppAgeScore(array $app, float $maxPoints): array
     {
-        if (empty($app['release_date'])) {
+        if (empty($app['release_date']) || !strtotime($app['release_date'])) {
             return [
                 'score' => 0,
                 'max_points' => $maxPoints,
