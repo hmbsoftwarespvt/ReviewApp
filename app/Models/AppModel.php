@@ -45,6 +45,7 @@ class AppModel extends Model
         'permissions',
         'has_encryption',
         'third_party_sdk_count',
+        'thumbnail',
     ];
 
     // Dates

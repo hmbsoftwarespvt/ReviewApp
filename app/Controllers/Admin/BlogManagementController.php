@@ -165,7 +165,7 @@ class BlogManagementController extends BaseController
         $featuredImage = $this->request->getFile('featured_image');
         if ($featuredImage && $featuredImage->isValid()) {
             $filename = $featuredImage->getRandomName();
-            $uploadPath = WRITEPATH . 'uploads/blog/';
+            $uploadPath = FCPATH . 'uploads/blog/';
             
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
@@ -271,7 +271,7 @@ class BlogManagementController extends BaseController
             }
             
             $filename = $featuredImage->getRandomName();
-            $uploadPath = WRITEPATH . 'uploads/blog/';
+            $uploadPath = FCPATH . 'uploads/blog/';
             
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
@@ -408,7 +408,7 @@ class BlogManagementController extends BaseController
      */
     protected function deleteFeaturedImage(string $filePath): void
     {
-        $fullPath = WRITEPATH . $filePath;
+        $fullPath = FCPATH . $filePath;
         
         if (file_exists($fullPath)) {
             unlink($fullPath);

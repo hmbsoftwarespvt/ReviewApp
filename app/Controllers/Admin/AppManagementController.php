@@ -114,6 +114,7 @@ class AppManagementController extends BaseController
             'permissions' => 'permit_empty',
             'has_encryption' => 'permit_empty|in_list[0,1]',
             'third_party_sdk_count' => 'permit_empty|integer|greater_than_equal_to[0]',
+            'thumbnail' => 'permit_empty|uploaded[thumbnail]|max_size[thumbnail,2048]|is_image[thumbnail]',
             'screenshots.*' => 'permit_empty|uploaded[screenshots]|max_size[screenshots,2048]|is_image[screenshots]',
         ];
         
@@ -172,6 +173,10 @@ class AppManagementController extends BaseController
                            ->with('error', 'Failed to create app');
         }
         
+        // Handle thumbnail upload
+        $this->handleThumbnailUpload($appId);
+        
+        // Handle screenshot uploads
         // Handle screenshot uploads
         $this->handleScreenshotUploads($appId);
         
@@ -249,6 +254,7 @@ class AppManagementController extends BaseController
             'permissions' => 'permit_empty',
             'has_encryption' => 'permit_empty|in_list[0,1]',
             'third_party_sdk_count' => 'permit_empty|integer|greater_than_equal_to[0]',
+            'thumbnail' => 'permit_empty|uploaded[thumbnail]|max_size[thumbnail,2048]|is_image[thumbnail]',
             'screenshots.*' => 'permit_empty|uploaded[screenshots]|max_size[screenshots,2048]|is_image[screenshots]',
         ];
         
@@ -317,6 +323,9 @@ class AppManagementController extends BaseController
                            ->withInput()
                            ->with('error', 'Failed to update app');
         }
+        
+        // Handle thumbnail upload
+        $this->handleThumbnailUpload($id);
         
         // Handle screenshot uploads
         $this->handleScreenshotUploads($id);
@@ -419,6 +428,37 @@ class AppManagementController extends BaseController
     }
     
     /**
+     * Handle thumbnail upload
+     *
+     * @param int $appId
+     * @return void
+     */
+    protected function handleThumbnailUpload(int $appId): void
+    {
+        $file = $this->request->getFile('thumbnail');
+        
+        if (!$file || !$file->isValid()) {
+            return;
+        }
+        
+        // Generate unique filename
+        $filename = $file->getRandomName();
+        
+        // Ensure upload directory exists
+        $uploadPath = FCPATH . 'uploads/thumbnails/';
+        
+        if (!is_dir($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+        
+        // Move file
+        $file->move($uploadPath, $filename);
+        
+        // Update app record
+        $this->appRepository->update($appId, ['thumbnail' => $filename]);
+    }
+    
+    /**
      * Handle screenshot uploads (max 10 per app)
      * 
      * @param int $appId
@@ -451,7 +491,7 @@ class AppManagementController extends BaseController
             $filename = $file->getRandomName();
             
             // Move file to uploads directory
-            $uploadPath = WRITEPATH . 'uploads/screenshots/';
+            $uploadPath = FCPATH . 'uploads/screenshots/';
             
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
@@ -500,7 +540,7 @@ class AppManagementController extends BaseController
      */
     protected function deleteScreenshotFile(string $filePath): void
     {
-        $fullPath = WRITEPATH . $filePath;
+        $fullPath = FCPATH . $filePath;
         
         if (file_exists($fullPath)) {
             unlink($fullPath);

@@ -22,15 +22,7 @@ $isLoggedIn = session()->get('isLoggedIn');
 ?>
 <?= $this->extend('base_template') ?>
 <?= $this->section('content') ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AppTrust – Check If An App Is Real or Scam</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
+<style>
         /* ===== BASE ===== */
         *, *::before, *::after { box-sizing: border-box; }
         body {
@@ -733,8 +725,6 @@ $isLoggedIn = session()->get('isLoggedIn');
             .search-bar-wrap .btn-search { width: 100%; }
         }
     </style>
-</head>
-<body>
 
 <!-- ===== HERO SECTION ===== -->
 <section class="at-hero">

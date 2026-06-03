@@ -677,9 +677,7 @@ if (!function_exists('scamFormatNum')) {
             .sa-score-num { font-size: 1.2rem; }
         }
     </style>
-</head>
-<body>
-                
+
 <!-- ===== PAGE HEADER ===== -->
 <div class="sa-page-header">
     <div class="container">

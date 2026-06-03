@@ -92,7 +92,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
     $routes->post('blog/store', 'BlogManagementController::store');
     $routes->get('blog/edit/(:num)', 'BlogManagementController::edit/$1');
     $routes->post('blog/update/(:num)', 'BlogManagementController::update/$1');
-    $routes->post('blog/delete/(:num)', 'BlogManagementController::delete/$1');
+    $routes->get('blog/delete/(:num)', 'BlogManagementController::delete/$1');
     $routes->get('blog/publish/(:num)', 'BlogManagementController::publish/$1');
     $routes->get('blog/unpublish/(:num)', 'BlogManagementController::unpublish/$1');
     
