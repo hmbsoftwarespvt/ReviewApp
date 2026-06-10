@@ -1,34 +1,26 @@
 <!-- Navigation -->
 <nav class="at-navbar">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
-            <!-- Logo -->
-            <a href="<?= base_url('/') ?>" class="navbar-brand">
-                <i class="bi bi-shield-fill-check brand-icon"></i>
-                AppTrust
-            </a>
+    <div class="container d-flex align-items-center justify-content-between flex-wrap">
+        <a href="<?= base_url('/') ?>" class="navbar-brand">
+            <i class="bi bi-shield-fill-check brand-icon"></i>
+            AppTrust
+        </a>
 
-            <!-- Center Nav Links -->
-            <ul class="nav d-none d-lg-flex align-items-center mb-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('/') ?>">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('categories') ?>">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('trending') ?>">Trending</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('scam-alerts') ?>">Scam Alerts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('blog') ?>">Blog</a>
-                </li>
+        <button class="navbar-toggler" type="button" onclick="toggleMobileMenu()"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="nav-collapse" id="mainNav">
+            <ul class="nav-links">
+                <li><a class="nav-link" href="<?= base_url('/') ?>">Home</a></li>
+                <li><a class="nav-link" href="<?= base_url('categories') ?>">Categories</a></li>
+                <li><a class="nav-link" href="<?= base_url('trending') ?>">Trending</a></li>
+                <li><a class="nav-link" href="<?= base_url('scam-alerts') ?>">Scam Alerts</a></li>
+                <li><a class="nav-link" href="<?= base_url('blog') ?>">Blog</a></li>
             </ul>
 
-            <!-- Right: Buttons -->
-            <div class="d-flex align-items-center gap-2">
+            <div class="nav-auth">
                 <?php if (session()->get('isLoggedIn')): ?>
                     <a href="<?= base_url('profile') ?>" class="btn-nav-login">My Profile</a>
                     <?php if (session()->get('role') === 'admin'): ?>
@@ -43,3 +35,12 @@
         </div>
     </div>
 </nav>
+
+<script>
+function toggleMobileMenu() {
+    document.getElementById('mainNav').classList.toggle('show');
+    var btn = document.querySelector('.navbar-toggler');
+    var expanded = btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
+    btn.setAttribute('aria-expanded', expanded);
+}
+</script>
