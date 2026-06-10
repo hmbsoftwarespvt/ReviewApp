@@ -271,6 +271,38 @@
         </div>
     </section>
 
+    <?php if (!empty($app['youtube_link'])): 
+        $ytId = '';
+        $parsed = parse_url($app['youtube_link']);
+        if (isset($parsed['host'])) {
+            if (str_contains($parsed['host'], 'youtu.be')) {
+                $ytId = ltrim($parsed['path'] ?? '', '/');
+            } elseif (str_contains($parsed['host'], 'youtube.com')) {
+                parse_str($parsed['query'] ?? '', $ytQuery);
+                $ytId = $ytQuery['v'] ?? '';
+            }
+        }
+    ?>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card-apptrust">
+                    <h3 style="font-size: var(--font-size-2xl); font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+                        <i class="bi bi-youtube" style="color:#FF0000;"></i> Video Review
+                    </h3>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/<?= esc($ytId) ?>" 
+                                title="YouTube video review" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
     <div class="container mb-5">
         <div class="row">
             <!-- Main Content -->
